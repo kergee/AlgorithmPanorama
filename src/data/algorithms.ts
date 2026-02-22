@@ -2698,5 +2698,183 @@ def sha256(message):
   return concatenate(H)`
       }
     ]
+  },
+  {
+    id: "database-algorithms",
+    title: "十七、数据库中的算法",
+    algorithms: [
+      {
+        name: "B+树 (B+ Tree)",
+        subtitle: "关系型数据库的基石",
+        details: [
+          { label: "提出者", value: "Rudolf Bayer & Edward M. McCreight" },
+          { label: "年代", value: "1970年 (B树) / 1972年 (B+树)" },
+          { label: "原理", value: "多路平衡查找树，非叶子节点只存索引，所有数据存在叶子节点且用链表相连，适合磁盘顺序读取" },
+          { label: "应用场景", value: "关系型数据库索引 (MySQL InnoDB)、文件系统 (NTFS, XFS)" }
+        ],
+        pseudocode: `def bplus_tree_search(node, key):
+  # 1. 如果当前节点是叶子节点
+  if node.is_leaf:
+    # 在叶子节点中查找匹配的键
+    for i in range(node.num_keys):
+      if node.keys[i] == key:
+        return node.values[i] # 找到数据记录
+    return None # 未找到
+    
+  # 2. 如果当前节点是内部节点 (非叶子节点)
+  else:
+    # 找到第一个大于等于 key 的子节点指针
+    i = 0
+    while i < node.num_keys and key >= node.keys[i]:
+      i += 1
+      
+    # 递归搜索对应的子节点
+    return bplus_tree_search(node.children[i], key)`
+      },
+      {
+        name: "LSM树 (Log-Structured Merge-Tree)",
+        subtitle: "写密集型数据库的核心",
+        details: [
+          { label: "提出者", value: "Patrick O'Neil 等" },
+          { label: "年代", value: "1996年" },
+          { label: "原理", value: "将随机写转化为顺序写，先写入内存(MemTable)，满了后刷入磁盘(SSTable)，后台定期合并(Compaction)" },
+          { label: "应用场景", value: "NoSQL数据库 (Cassandra, RocksDB, HBase)、时序数据库、写密集型场景" }
+        ],
+        pseudocode: `def lsm_tree_write(key, value):
+  # 1. 先写入预写日志 (WAL)，保证崩溃不丢数据
+  append_to_wal(key, value)
+  
+  # 2. 写入内存表 (MemTable，通常是跳表或红黑树)
+  memtable.insert(key, value)
+  
+  # 3. 如果 MemTable 满了，冻结并创建一个新的 MemTable
+  if memtable.size() >= limit:
+    immutable_memtable = memtable
+    memtable = new MemTable()
+    
+    # 4. 异步将 Immutable MemTable 刷入磁盘，生成 SSTable (Level 0)
+    async_flush_to_disk(immutable_memtable)
+    
+def lsm_tree_read(key):
+  # 1. 先查当前 MemTable
+  if key in memtable: return memtable.get(key)
+  
+  # 2. 再查 Immutable MemTable
+  if key in immutable_memtable: return immutable_memtable.get(key)
+  
+  # 3. 最后按层级 (Level 0 -> Level N) 查找磁盘上的 SSTable
+  # (通常结合布隆过滤器加速判断)
+  for level in range(max_levels):
+    for sstable in get_sstables(level):
+      if bloom_filter_check(sstable, key):
+        if key in sstable: return sstable.get(key)
+        
+  return None`
+      },
+      {
+        name: "布隆过滤器 (Bloom Filter)",
+        subtitle: "空间换时间的概率型数据结构",
+        details: [
+          { label: "提出者", value: "Burton Howard Bloom" },
+          { label: "年代", value: "1970年" },
+          { label: "原理", value: "多个哈希函数映射到一个位数组，能100%判断元素不存在，但判断存在有一定误判率" },
+          { label: "应用场景", value: "数据库防缓存穿透、LSM树快速判断SSTable是否包含某Key、网页黑名单过滤" }
+        ],
+        pseudocode: `class BloomFilter:
+  def __init__(self, size, num_hash_functions):
+    self.bit_array = [0] * size
+    self.k = num_hash_functions
+    
+  def insert(self, item):
+    # 1. 对元素进行 k 次哈希计算
+    for i in range(self.k):
+      hash_val = hash_function(item, i) % len(self.bit_array)
+      # 2. 将位数组对应位置设为 1
+      self.bit_array[hash_val] = 1
+      
+  def check(self, item):
+    # 1. 对元素进行 k 次哈希计算
+    for i in range(self.k):
+      hash_val = hash_function(item, i) % len(self.bit_array)
+      # 2. 如果有任何一位是 0，则元素绝对不存在
+      if self.bit_array[hash_val] == 0:
+        return False
+        
+    # 3. 如果所有位都是 1，则元素可能存在 (存在误判率)
+    return True`
+      },
+      {
+        name: "多版本并发控制 (MVCC)",
+        subtitle: "读写不互斥的并发控制",
+        details: [
+          { label: "提出者", value: "David P. Reed" },
+          { label: "年代", value: "1978年" },
+          { label: "原理", value: "每次写操作创建数据的新版本，读操作读取特定版本，实现读写不互斥，提高并发性能" },
+          { label: "应用场景", value: "关系型数据库事务隔离 (MySQL InnoDB, PostgreSQL)、避免脏读和不可重复读" }
+        ],
+        pseudocode: `def mvcc_read(transaction_id, row_id):
+  # 1. 获取该行的所有历史版本 (按版本号/时间戳倒序)
+  versions = get_all_versions(row_id)
+  
+  for version in versions:
+    # 2. 可见性判断 (Read View)
+    # 如果该版本的创建事务在当前事务开始前已提交，且未被删除
+    if is_visible(version, transaction_id):
+      return version.data
+      
+  return None # 无可见版本
+
+def mvcc_write(transaction_id, row_id, new_data):
+  # 1. 锁定该行 (写操作仍需互斥)
+  lock_row(row_id)
+  
+  # 2. 复制最新版本，创建新版本
+  new_version = create_version(row_id, new_data)
+  new_version.created_by = transaction_id
+  new_version.deleted_by = None
+  
+  # 3. 更新旧版本的删除标记 (指向当前事务)
+  latest_version = get_latest_version(row_id)
+  latest_version.deleted_by = transaction_id
+  
+  # 4. 插入新版本并释放锁
+  insert_version(new_version)
+  unlock_row(row_id)`
+      },
+      {
+        name: "ARIES 恢复算法",
+        subtitle: "数据库崩溃恢复的黄金标准",
+        details: [
+          { label: "提出者", value: "C. Mohan 等 (IBM)" },
+          { label: "年代", value: "1992年" },
+          { label: "原理", value: "基于 Write-Ahead Logging (WAL)，崩溃恢复分三阶段：分析(Analysis)、重做(Redo)、撤销(Undo)" },
+          { label: "应用场景", value: "数据库崩溃恢复 (Crash Recovery)、保证事务的原子性(A)和持久性(D)" }
+        ],
+        pseudocode: `def aries_recovery(log_file, checkpoint):
+  # 1. 分析阶段 (Analysis Phase)
+  # 从最近的检查点开始正向扫描日志
+  # 确定崩溃时活跃的事务 (Active Transactions) 和脏页 (Dirty Pages)
+  active_txns, dirty_pages = analysis_phase(log_file, checkpoint)
+  
+  # 2. 重做阶段 (Redo Phase)
+  # 找到最老的脏页对应的日志序列号 (LSN)
+  start_lsn = min(dirty_pages.recovery_lsn)
+  
+  # 从 start_lsn 正向扫描日志，重做所有更新操作 (包括未提交的事务)
+  # 将数据库恢复到崩溃那一瞬间的状态 (Repeating History)
+  for log_record in scan_logs_forward(log_file, start_lsn):
+    if log_record.is_update():
+      apply_update_to_page(log_record)
+      
+  # 3. 撤销阶段 (Undo Phase)
+  # 针对分析阶段确定的所有活跃事务 (即未提交的事务)
+  # 反向扫描日志，撤销它们的更新操作
+  for log_record in scan_logs_backward(log_file, active_txns):
+    if log_record.is_update():
+      undo_update_to_page(log_record)
+      # 写入补偿日志记录 (CLR)，防止再次崩溃时重复撤销
+      write_clr(log_record)`
+      }
+    ]
   }
 ];
