@@ -25,9 +25,12 @@ export const algorithmData: Category[] = [
         name: "PID 控制器",
         subtitle: "工业界的\"自动驾驶仪\"",
         details: [
+          { label: "提出者", value: "Nicolas Minorsky (理论化) / Elmer Sperry (早期应用)" },
+          { label: "年代", value: "1922年 (理论化)" },
           { label: "原理", value: "根据当前误差（P比例）、误差累积（I积分）、误差变化趋势（D微分）三个维度调整输出" },
           { label: "类比", value: "就像开车时，P是看你离车道线多远，I是你长时间偏差的累积，D是你偏离的速度" },
-          { label: "应用", value: "恒温器、无人机稳定、化工过程控制" }
+          { label: "特点", value: "结构简单、稳定性好、工作可靠、调整方便" },
+          { label: "应用场景", value: "恒温器、无人机稳定、化工过程控制、电机调速" }
         ],
         pseudocode: `previous_error = 0
 integral = 0
@@ -46,8 +49,12 @@ loop:
         name: "模糊控制（Fuzzy Control）",
         subtitle: "模仿人类\"差不多\"的思维",
         details: [
+          { label: "提出者", value: "Lotfi A. Zadeh (模糊逻辑) / Ebrahim Mamdani (模糊控制)" },
+          { label: "年代", value: "1965年 (模糊逻辑) / 1974年 (模糊控制)" },
           { label: "原理", value: "用\"有点热\"、\"比较冷\"这样的模糊集合代替精确数值，通过经验规则做决策" },
-          { label: "应用", value: "洗衣机根据衣物脏污程度自动调节、地铁自动驾驶的平滑启停" }
+          { label: "类比", value: "就像老师评价学生，“优秀”、“良好”、“及格”，而不是只看分数" },
+          { label: "特点", value: "无需精确数学模型，鲁棒性强" },
+          { label: "应用场景", value: "洗衣机自动调节、地铁平滑启停、空调温度控制" }
         ],
         pseudocode: `# 1. 模糊化 (Fuzzification)
 temp_fuzzy = get_fuzzy_set(temperature) # 如: "Cold", "Warm", "Hot"
@@ -67,8 +74,12 @@ output_power = calculate_exact_power(power)`
         name: "模型预测控制（MPC）",
         subtitle: "工业过程的\" chess 大师\"",
         details: [
+          { label: "提出者", value: "Charles Cutler & Brian Ramaker (DMC算法)" },
+          { label: "年代", value: "1970s末" },
           { label: "原理", value: "每一步都预测未来一段时间的系统行为，滚动优化当前控制量" },
-          { label: "应用", value: "炼油厂多变量协调控制、机器人运动规划" }
+          { label: "类比", value: "就像下围棋，每走一步都会推演后面几十步的可能性" },
+          { label: "特点", value: "能够处理多变量约束，预测性强" },
+          { label: "应用场景", value: "炼油厂多变量协调控制、自动驾驶轨迹跟踪、机器人运动规划" }
         ],
         pseudocode: `loop:
   cost = 0
@@ -87,8 +98,12 @@ output_power = calculate_exact_power(power)`
         name: "自适应控制",
         subtitle: "会自我学习的控制器",
         details: [
+          { label: "提出者", value: "Yakov Tsypkin, Richard Bellman 等" },
+          { label: "年代", value: "1950s" },
           { label: "原理", value: "在线识别系统参数变化，实时调整控制策略" },
-          { label: "应用", value: "飞行器在不同高度自动适应空气密度变化" }
+          { label: "类比", value: "就像变色龙根据环境颜色改变皮肤颜色" },
+          { label: "特点", value: "自动补偿系统参数的不确定性" },
+          { label: "应用场景", value: "飞行器自动适应空气密度变化、机械臂负载变化控制" }
         ],
         pseudocode: `loop:
   # 1. 实时估计系统参数 (如使用递归最小二乘法)
@@ -105,8 +120,12 @@ output_power = calculate_exact_power(power)`
         name: "滑模控制（SMC）",
         subtitle: "强迫系统\"滑\"在理想轨迹上",
         details: [
+          { label: "提出者", value: "Vadim Utkin 等" },
+          { label: "年代", value: "1950s末" },
           { label: "原理", value: "设计一个\"滑动面\"，通过高频切换强制系统状态趋近并保持在面上" },
-          { label: "应用", value: "电机精确控制、航天器姿态调整" }
+          { label: "类比", value: "就像强迫一个球沿着凹槽滚动，即使有颠簸也会回到槽里" },
+          { label: "特点", value: "对参数变化和外部干扰具有极强的鲁棒性" },
+          { label: "应用场景", value: "电机精确控制、航天器姿态调整、电力电子变换器控制" }
         ],
         pseudocode: `loop:
   # 1. 计算滑动面 s (例如 s = 0 为理想轨迹)
@@ -132,8 +151,12 @@ output_power = calculate_exact_power(power)`
         name: "粒子群优化（PSO）",
         subtitle: "模拟鸟群觅食",
         details: [
+          { label: "提出者", value: "James Kennedy & Russell Eberhart" },
+          { label: "年代", value: "1995年" },
           { label: "原理", value: "每个解是一只\"鸟\"，既向自己找到的最好位置飞，也向群体最好的位置飞" },
-          { label: "特点", value: "收敛快，适合连续优化问题" }
+          { label: "类比", value: "像鸟群在森林中寻找食物，每只鸟都关注自己飞过的最好位置和整个群体的最好位置" },
+          { label: "特点", value: "参数少、收敛快、易于实现，适合连续优化问题" },
+          { label: "应用场景", value: "神经网络权重训练、电力系统经济调度、图像分割" }
         ],
         pseudocode: `for each particle i:
   initialize position x[i] and velocity v[i] randomly
@@ -157,8 +180,12 @@ while not terminated:
         name: "蚁群算法（ACO）",
         subtitle: "模拟蚂蚁找食物",
         details: [
+          { label: "提出者", value: "Marco Dorigo" },
+          { label: "年代", value: "1992年" },
           { label: "原理", value: "蚂蚁在路径上留下信息素，短路径信息素浓，吸引更多蚂蚁，形成正反馈" },
-          { label: "应用", value: "旅行商问题（TSP）、网络路由优化" }
+          { label: "类比", value: "像蚂蚁搬运食物，通过在路径上留下信息素来指引同伴，越短的路径信息素积累越快" },
+          { label: "特点", value: "并行性、正反馈机制、鲁棒性强" },
+          { label: "应用场景", value: "旅行商问题（TSP）、网络路由优化、物流配送路径规划" }
         ],
         pseudocode: `initialize pheromone matrix tau with small values
 
@@ -186,8 +213,12 @@ while not terminated:
         name: "人工蜂群（ABC）",
         subtitle: "模拟蜜蜂采蜜分工",
         details: [
+          { label: "提出者", value: "Dervis Karaboga" },
+          { label: "年代", value: "2005年" },
           { label: "原理", value: "分为雇佣蜂（开发当前解）、观察蜂（按概率选择解）、侦察蜂（随机搜索新解）" },
-          { label: "特点", value: "平衡探索与开发" }
+          { label: "类比", value: "像蜜蜂分工采蜜，雇佣蜂分享信息，观察蜂选择花蜜，侦察蜂寻找新资源" },
+          { label: "特点", value: "平衡探索与开发，参数简单" },
+          { label: "应用场景", value: "无线传感器网络节点部署、图像多阈值分割、约束优化问题" }
         ],
         pseudocode: `initialize food sources (solutions) randomly
 
@@ -217,8 +248,12 @@ while not terminated:
         name: "萤火虫算法",
         subtitle: "亮度吸引机制",
         details: [
+          { label: "提出者", value: "Xin-She Yang" },
+          { label: "年代", value: "2008年" },
           { label: "原理", value: "萤火虫向更亮的个体移动，亮度对应目标函数值，距离越远吸引力越弱" },
-          { label: "应用", value: "多模态函数优化" }
+          { label: "类比", value: "像夏夜的萤火虫，亮度低的向亮度高的移动，吸引力随距离增加而减弱" },
+          { label: "特点", value: "能够处理多模态优化问题、自动分组" },
+          { label: "应用场景", value: "多模态函数优化、特征选择、图像压缩" }
         ],
         pseudocode: `initialize population of fireflies x[i]
 calculate light intensity I[i] = fitness(x[i])
@@ -243,8 +278,12 @@ while not terminated:
         name: "布谷鸟搜索（Cuckoo Search）",
         subtitle: "寄生繁殖策略",
         details: [
+          { label: "提出者", value: "Xin-She Yang & Suash Deb" },
+          { label: "年代", value: "2009年" },
           { label: "原理", value: "布谷鸟在其他鸟巢产卵，以一定概率被发现丢弃，结合莱维飞行（随机长跳转）" },
-          { label: "特点", value: "全局搜索能力强" }
+          { label: "类比", value: "像布谷鸟寄生产卵，结合莱维飞行（长短结合的随机步长）来寻找更好的鸟巢" },
+          { label: "特点", value: "全局搜索能力强，参数极少" },
+          { label: "应用场景", value: "弹簧设计优化、工程结构优化、软件测试数据生成" }
         ],
         pseudocode: `initialize n host nests (solutions) randomly
 
@@ -270,8 +309,12 @@ while not terminated:
         name: "狼群算法（WPA）",
         subtitle: "模拟狼群狩猎层级",
         details: [
+          { label: "提出者", value: "Seyedali Mirjalili (GWO) / Wu 等 (WPA)" },
+          { label: "年代", value: "2014年 (GWO) / 2013年 (WPA)" },
           { label: "原理", value: "头狼、探狼、猛狼分工合作，围攻猎物时按等级分配食物" },
-          { label: "应用", value: "特征选择、聚类分析" }
+          { label: "类比", value: "像狼群围猎，通过头狼指挥、探狼搜索、猛狼围攻实现目标捕获" },
+          { label: "特点", value: "严密的等级制度、协同搜索能力强" },
+          { label: "应用场景", value: "特征选择、聚类分析、电力系统无功优化" }
         ],
         pseudocode: `initialize wolf pack randomly
 find the best wolf as Alpha (头狼)
@@ -301,7 +344,12 @@ while not terminated:
         name: "蝙蝠算法",
         subtitle: "回声定位机制",
         details: [
-          { label: "原理", value: "蝙蝠调整发射脉冲的频率和响度来定位猎物，频率控制搜索范围，响度控制收敛" }
+          { label: "提出者", value: "Xin-She Yang" },
+          { label: "年代", value: "2010年" },
+          { label: "原理", value: "蝙蝠调整发射脉冲的频率和响度来定位猎物，频率控制搜索范围，响度控制收敛" },
+          { label: "类比", value: "像蝙蝠利用回声定位，通过调整脉冲频率、响度和发射率来锁定猎物" },
+          { label: "特点", value: "结合了PSO和局部搜索的优点，收敛性好" },
+          { label: "应用场景", value: "微电子机械系统(MEMS)设计、图像匹配、无线网络路由" }
         ],
         pseudocode: `initialize bat population x[i] and velocity v[i]
 initialize frequency f[i], pulse rate r[i], and loudness A[i]
@@ -341,7 +389,8 @@ while not terminated:
           { label: "提出者", value: "N. Metropolis (核心思想) / S. Kirkpatrick 等 (引入优化)" },
           { label: "年代", value: "1953年 / 1983年" },
           { label: "原理", value: "高温时接受差解的概率高（探索），低温时只接受好解（开发），温度逐渐降低" },
-          { label: "关键", value: "以一定概率跳出局部最优，这个概率随\"温度\"下降而减小" },
+          { label: "类比", value: "就像打铁，先加热到高温让原子乱跳跳出局部缺陷，再慢慢冷却让原子排列整齐" },
+          { label: "特点", value: "以一定概率跳出局部最优，具有全局搜索能力" },
           { label: "应用场景", value: "VLSI 布线、旅行商问题(TSP)、图像处理、大规模组合优化" }
         ],
         pseudocode: `T = T_initial
@@ -368,7 +417,8 @@ while T > T_min:
           { label: "提出者", value: "John Holland" },
           { label: "年代", value: "1975年" },
           { label: "原理", value: "选择（适者生存）、交叉（基因重组）、变异（随机突变）三代操作循环" },
-          { label: "变体", value: "差分进化（DE）、遗传规划（GP）" },
+          { label: "类比", value: "就像生物进化，优秀的个体更容易留下后代，后代通过基因重组和突变产生更多可能性" },
+          { label: "特点", value: "鲁棒性强，不依赖梯度信息，适合处理复杂非线性问题" },
           { label: "应用场景", value: "自动控制、机器人路径规划、机器学习超参数搜索、工程设计优化" }
         ],
         pseudocode: `population = initialize_population(pop_size)
@@ -402,6 +452,8 @@ while not terminated:
           { label: "提出者", value: "Fred Glover" },
           { label: "年代", value: "1986年" },
           { label: "原理", value: "将近期访问的解放入\"禁忌表\"避免循环，同时引入\"藐视准则\"允许打破禁忌" },
+          { label: "类比", value: "就像走迷宫，记住刚走过的死胡同（禁忌），短时间内不再走，但如果发现某个死胡同其实通向出口（藐视准则），就破例进去" },
+          { label: "特点", value: "具有记忆功能，能有效避免搜索过程中的重复和陷入局部最优" },
           { label: "应用场景", value: "车间调度、车辆路径问题(VRP)、图着色、网络设计" }
         ],
         pseudocode: `current_solution = generate_initial_solution()
@@ -434,6 +486,8 @@ while not terminated:
           { label: "提出者", value: "Nenad Mladenović & Pierre Hansen" },
           { label: "年代", value: "1997年" },
           { label: "原理", value: "当在当前邻域陷入局部最优时，切换到更大或不同的邻域结构继续搜索" },
+          { label: "类比", value: "就像在山上找最高点，如果在这个小土坡找不到了，就跳到更远的山头去试试" },
+          { label: "特点", value: "系统性改变邻域结构，平衡了局部搜索和全局探索" },
           { label: "应用场景", value: "选址问题、调度问题、聚类分析、多目标优化" }
         ],
         pseudocode: `current_solution = generate_initial_solution()
@@ -462,6 +516,8 @@ while not terminated:
           { label: "提出者", value: "Zong Woo Geem 等" },
           { label: "年代", value: "2001年" },
           { label: "原理", value: "乐手（变量）从记忆库（历史优解）或随机音阶（搜索空间）中选择音高，按和声评价调整" },
+          { label: "类比", value: "就像爵士乐即兴演奏，乐手根据记忆中的好乐句或随机灵感凑出动听的和声" },
+          { label: "特点", value: "结构简单，参数少，搜索效率高" },
           { label: "应用场景", value: "供水网络设计、结构优化、电力系统调度、音乐作曲辅助" }
         ],
         pseudocode: `harmony_memory = initialize_harmony_memory(HMS) # HMS: 记忆库大小
@@ -490,6 +546,8 @@ while not terminated:
           { label: "提出者", value: "R.V. Rao 等" },
           { label: "年代", value: "2011年" },
           { label: "原理", value: "\"教师阶段\"向班级平均最优学习，\"学生阶段\"学生之间互相学习" },
+          { label: "类比", value: "就像课堂学习，老师把知识传给全班（教师阶段），课后同学之间互相讨论提高（学生阶段）" },
+          { label: "特点", value: "无需算法特定参数（如交叉率、变异率等），易于使用" },
           { label: "应用场景", value: "机械设计优化、热交换器设计、电力系统潮流优化" }
         ],
         pseudocode: `population = initialize_students()
@@ -532,7 +590,8 @@ while not terminated:
           { label: "提出者", value: "Yann LeCun 等" },
           { label: "年代", value: "1989年 (LeNet) / 2012年 (AlexNet爆发)" },
           { label: "原理", value: "卷积核（滤镜）扫描图像提取边缘、纹理等特征，逐层抽象从线条到物体" },
-          { label: "变体", value: "ResNet（残差连接）、YOLO（实时检测）、U-Net（图像分割）" },
+          { label: "类比", value: "就像用放大镜扫描整张照片，先看线条，再看形状，最后认出物体" },
+          { label: "特点", value: "局部连接、权值共享、平移不变性" },
           { label: "应用场景", value: "图像分类、目标检测、人脸识别、医学影像分析、自动驾驶视觉" }
         ],
         pseudocode: `def CNN_forward(image):
@@ -562,6 +621,8 @@ while not terminated:
           { label: "提出者", value: "Sepp Hochreiter & Jürgen Schmidhuber (LSTM)" },
           { label: "年代", value: "1997年 (LSTM) / 2014年 (GRU)" },
           { label: "原理", value: "隐藏状态传递历史信息，LSTM用\"门控\"机制决定记住/忘记什么" },
+          { label: "类比", value: "就像读小说，读到后面时还记得前面的情节，并根据情节重要性决定记住哪些关键点" },
+          { label: "特点", value: "处理序列数据、具有短期/长期记忆" },
           { label: "应用场景", value: "语音识别、机器翻译、时间序列预测、文本生成、情感分析" }
         ],
         pseudocode: `def LSTM_cell(input_t, prev_hidden_state, prev_cell_state):
@@ -588,7 +649,8 @@ while not terminated:
           { label: "提出者", value: "Ashish Vaswani 等 (Google Brain)" },
           { label: "年代", value: "2017年" },
           { label: "原理", value: "自注意力让模型同时关注输入的所有位置，计算它们之间的相关性权重" },
-          { label: "代表", value: "BERT（双向编码）、GPT（生成式预训练）" },
+          { label: "类比", value: "就像在聚会上听人说话，虽然很多人在说，但你会自动“注意”到和你对话的人说的关键词" },
+          { label: "特点", value: "并行化训练、长距离依赖建模能力强" },
           { label: "应用场景", value: "大语言模型(LLM)、多模态大模型、机器翻译、代码生成" }
         ],
         pseudocode: `def self_attention(query, key, value):
@@ -625,7 +687,8 @@ def transformer_block(inputs):
           { label: "提出者", value: "Ian Goodfellow 等" },
           { label: "年代", value: "2014年" },
           { label: "原理", value: "生成器造假，判别器鉴真，两者对抗训练直至生成器以假乱真" },
-          { label: "变体", value: "StyleGAN（控制生成风格）、CycleGAN（图像风格迁移）" },
+          { label: "类比", value: "就像假币制造者和警察，制造者努力让假币更逼真，警察努力识破假币，双方在博弈中共同进步" },
+          { label: "特点", value: "无监督学习、生成能力极强" },
           { label: "应用场景", value: "图像生成、图像修复、超分辨率重建、数据增强、Deepfake" }
         ],
         pseudocode: `for number_of_training_iterations:
@@ -654,6 +717,8 @@ def transformer_block(inputs):
           { label: "提出者", value: "Richard Sutton (RL基础) / DeepMind (DQN)" },
           { label: "年代", value: "1989年 (Q-learning) / 2013年 (DQN)" },
           { label: "原理", value: "智能体在环境中采取行动获得奖励，学习最大化长期累积奖励的策略" },
+          { label: "类比", value: "就像训练小狗，做对了给骨头（奖励），做错了不给，小狗最终学会为了骨头去做正确的动作" },
+          { label: "特点", value: "试错学习、延迟奖励、探索与利用平衡" },
           { label: "应用场景", value: "AlphaGo、自动驾驶决策、游戏AI、机器人控制、推荐系统" }
         ],
         pseudocode: `initialize Q_table(state, action) arbitrarily
@@ -687,6 +752,8 @@ for each episode:
           { label: "提出者", value: "Franco Scarselli 等 / Thomas Kipf (GCN)" },
           { label: "年代", value: "2008年 (GNN) / 2016年 (GCN)" },
           { label: "原理", value: "通过消息传递机制，节点聚合邻居信息更新自身表示" },
+          { label: "类比", value: "就像社交圈，你的性格和爱好往往受到你最亲近的几个朋友的影响，大家互相交换信息" },
+          { label: "特点", value: "处理非欧几里得空间数据、捕捉拓扑结构信息" },
           { label: "应用场景", value: "社交网络分析、分子性质预测、推荐系统、知识图谱推理" }
         ],
         pseudocode: `def GNN_layer(nodes, edges):
@@ -717,6 +784,8 @@ for each episode:
           { label: "提出者", value: "Geoffrey Hinton 等" },
           { label: "年代", value: "2017年" },
           { label: "原理", value: "用\"胶囊\"代替神经元，输出是向量（包含姿态信息）而非标量，用动态路由替代池化" },
+          { label: "类比", value: "就像识别人的脸，不仅看有没有眼睛鼻子，还要看它们的相对位置和角度是否正确" },
+          { label: "特点", value: "保留空间层次结构、对旋转和仿射变换更鲁棒" },
           { label: "应用场景", value: "重叠数字识别、视角变化鲁棒的图像分类、医学图像分割" }
         ],
         pseudocode: `def dynamic_routing(u_hat, num_iterations):
@@ -752,7 +821,8 @@ for each episode:
           { label: "提出者", value: "Cynthia Dwork 等" },
           { label: "年代", value: "2006年" },
           { label: "原理", value: "在查询结果中添加精心设计的噪声（拉普拉斯/高斯），使得单条记录的存在与否无法被推断" },
-          { label: "关键参数", value: "ε（隐私预算），越小保护越强但效用越低" },
+          { label: "类比", value: "就像在统计班级平均分时，故意给每个人的分数加减一点随机数，虽然平均分还是准的，但谁也猜不出具体的某个人考了多少分" },
+          { label: "特点", value: "数学证明的隐私界限、抗背景攻击、隐私预算可控" },
           { label: "应用场景", value: "苹果收集用户数据、美国人口普查数据发布、Google统计Chrome使用情况" }
         ],
         pseudocode: `def laplace_mechanism(data, query_function, epsilon, sensitivity):
@@ -776,7 +846,8 @@ for each episode:
           { label: "提出者", value: "John Kindervag (Forrester Research)" },
           { label: "年代", value: "2010年" },
           { label: "原理", value: "不是具体算法而是安全模型，默认不信任任何内外网请求，每次访问都需身份验证和授权" },
-          { label: "核心", value: "最小权限原则、微隔离、持续验证" },
+          { label: "类比", value: "就像进入高度机密的实验室，不仅门口要刷卡，每进一扇门、每动一个设备都要重新验证身份，不管你已经在里面待了多久" },
+          { label: "特点", value: "最小权限原则、微隔离、持续验证、不依赖网络边界" },
           { label: "应用场景", value: "企业内网安全、远程办公访问、云原生微服务间通信" }
         ],
         pseudocode: `def access_request_evaluation(user, device, resource, context):
@@ -808,7 +879,8 @@ for each episode:
           { label: "提出者", value: "Rivest 等 (概念) / Craig Gentry (全同态实现)" },
           { label: "年代", value: "1978年 (概念) / 2009年 (FHE实现)" },
           { label: "原理", value: "密文运算结果解密后等于明文运算结果，支持加法和/或乘法" },
-          { label: "分级", value: "部分同态（PHE）、 somewhat同态（SHE）、全同态（FHE）" },
+          { label: "类比", value: "就像把金块锁在一个带手套的透明盒子里，工人们可以戴着手套在盒子里加工金块，但他们拿不走金块，也看不见金块的真面目，只有主人有钥匙能打开盒子取走成品" },
+          { label: "特点", value: "数据“可用不可见”、计算外包安全、计算开销大（尤其是FHE）" },
           { label: "应用场景", value: "隐私保护下的云计算、医疗数据联合分析、加密数据库查询" }
         ],
         pseudocode: `# 客户端 (数据拥有者)
@@ -836,7 +908,8 @@ final_result = decrypt(private_key, ciphertext_result)
           { label: "提出者", value: "Andrew Yao (姚期智 - 百万富翁问题)" },
           { label: "年代", value: "1982年" },
           { label: "原理", value: "多方各自持有秘密输入，共同计算函数结果，但彼此不知道对方的具体输入" },
-          { label: "技术", value: "秘密共享、混淆电路、不经意传输" },
+          { label: "类比", value: "就像几个百万富翁想比谁更有钱，但谁都不想说出自己的具体存款。他们找来一个黑盒，每个人把钱数的一部分投进去，最后黑盒只显示谁最富有" },
+          { label: "特点", value: "输入私密性、计算正确性、去中心化信任" },
           { label: "应用场景", value: "联合风控、跨机构医疗数据分析、隐私集合求交(PSI)、电子投票" }
         ],
         pseudocode: `# 示例: 基于秘密共享(Secret Sharing)的安全求和
@@ -868,6 +941,8 @@ total_sum = Alice_sum + Bob_sum + Charlie_sum
           { label: "提出者", value: "Latanya Sweeney (k-匿名) / Ashwin Machanavajjhala 等 (l-多样性)" },
           { label: "年代", value: "1998年 (k-匿名) / 2006年 (l-多样性)" },
           { label: "原理", value: "发布数据时确保每条记录至少与k-1条其他记录不可区分（准标识符相同），且敏感属性有l种不同值" },
+          { label: "类比", value: "就像在人群中找人，如果人群里有10个长得一模一样的人（k=10），你就很难确定谁是谁；如果这10个人得的病各不相同（l-多样性），你就更难猜出某个人的具体病情" },
+          { label: "特点", value: "简单直观、易于实现、无法抗背景知识攻击（k-匿名缺陷）" },
           { label: "应用场景", value: "医疗记录发布、用户行为数据开源、位置轨迹脱敏" }
         ],
         pseudocode: `def apply_k_anonymity(dataset, quasi_identifiers, k):
@@ -903,7 +978,8 @@ def check_l_diversity(equivalence_class, sensitive_attribute, l):
           { label: "提出者", value: "Amit & Goldfarb (早期) / Caprara 等 (MIP模型)" },
           { label: "年代", value: "1970s (早期) / 2002年 (经典模型)" },
           { label: "原理", value: "混合整数规划求解，考虑轨道占用冲突、时刻表约束、最小追踪间隔" },
-          { label: "方法", value: "分支定界、拉格朗日松弛、启发式规则" },
+          { label: "类比", value: "就像在单行道上指挥多辆车，必须精确计算每辆车进入和离开的时间，防止追尾或堵塞" },
+          { label: "特点", value: "强约束性、高安全性、多目标优化（准点率、能耗）" },
           { label: "应用场景", value: "高铁运行图编制、地铁日常调度、货运列车编组" }
         ],
         pseudocode: `def train_scheduling(trains, tracks, time_horizon):
@@ -935,8 +1011,9 @@ def check_l_diversity(equivalence_class, sensitive_attribute, l):
         details: [
           { label: "提出者", value: "George Dantzig & John Ramser" },
           { label: "年代", value: "1959年" },
-          { label: "变体", value: "带时间窗（VRPTW）、容量限制（CVRP）、取送货（PDP）" },
-          { label: "求解", value: "节约算法（Clarke-Wright）、扫描算法、元启发式（遗传、禁忌）" },
+          { label: "原理", value: "在满足客户需求和车辆容量约束下，规划多辆车的行驶路线，使总成本（距离、时间）最小" },
+          { label: "类比", value: "就像快递员分拣包裹并规划送货路线，要用最少的车、走最短的路送完所有货" },
+          { label: "特点", value: "组合优化难题（NP-hard）、约束复杂（时间窗、容量）、动态性强" },
           { label: "应用场景", value: "快递包裹派送、外卖路径规划、冷链物流配送、垃圾回收路线" }
         ],
         pseudocode: `# Clarke-Wright 节约算法 (启发式)
@@ -971,7 +1048,8 @@ def clarke_wright_savings(depot, customers, capacity):
           { label: "提出者", value: "John D. C. Little 等 (MAXBAND模型)" },
           { label: "年代", value: "1981年" },
           { label: "原理", value: "计算相邻路口信号灯的相位差，使以特定速度行驶的车辆连续遇到绿灯" },
-          { label: "优化", value: "最大化带宽、最小化延误" },
+          { label: "类比", value: "就像接力比赛，如果每个接棒者都提前起跑并精准接棒，整个队伍就能保持最高速前进" },
+          { label: "特点", value: "提升干道通行效率、减少停车次数、降低排放" },
           { label: "应用场景", value: "城市主干道交通流优化、快速公交(BRT)优先通行" }
         ],
         pseudocode: `def calculate_green_wave(intersections, design_speed):
@@ -1003,8 +1081,9 @@ def clarke_wright_savings(depot, customers, capacity):
         details: [
           { label: "提出者", value: "Dijkstra (1956) / Hart 等 (A*, 1968) / Koenig 等 (D* Lite, 2002)" },
           { label: "年代", value: "1956年 - 2002年" },
-          { label: "A*算法", value: "加入启发式函数（估计到目标距离），优先探索有希望的节点" },
-          { label: "D* Lite", value: "环境变化时增量更新路径，适合机器人探索未知环境" },
+          { label: "原理", value: "Dijkstra寻找最短路径；A*加入启发式引导；D* Lite处理动态环境变化" },
+          { label: "类比", value: "就像在森林里找出口，Dijkstra是地毯式搜索，A*是看着指南针往出口方向走，D* Lite是路断了能立刻换路" },
+          { label: "特点", value: "计算效率高、结果最优（A*需满足一致性）、适应性强" },
           { label: "应用场景", value: "汽车导航系统、游戏NPC寻路、无人机避障飞行、AGV小车调度" }
         ],
         pseudocode: `# A* 算法伪代码
@@ -1041,8 +1120,9 @@ def A_star_search(start, goal, graph):
         details: [
           { label: "提出者", value: "运筹学界 (如 Barnhart 等在列生成上的贡献)" },
           { label: "年代", value: "1990s (大规模应用)" },
-          { label: "约束", value: "法规休息时长、飞机维护、机场宵禁、乘客转机" },
-          { label: "方法", value: "列生成（Column Generation）、约束规划" },
+          { label: "原理", value: "利用列生成算法在海量可行方案中寻找最优组合，满足法规和运营约束" },
+          { label: "类比", value: "就像拼图，要把成千上万个航班、飞机和机组人员精准地拼在一起，不能有任何空隙或冲突" },
+          { label: "特点", value: "极大规模优化、约束极其繁琐、对异常情况敏感" },
           { label: "应用场景", value: "航空公司航班计划编制、高铁乘务员排班、公交司机排班" }
         ],
         pseudocode: `# 列生成 (Column Generation) 框架
@@ -1084,7 +1164,8 @@ def crew_scheduling(flights, rules):
           { label: "提出者", value: "Merrill M. Flood, Martin Gardner (普及)" },
           { label: "年代", value: "1958年 / 1960年" },
           { label: "原理", value: "观察前37%的选项但不选择，之后遇到比前面都好的就选" },
-          { label: "数学基础", value: "e^-1 ≈ 0.37，最大化选到最优的概率（约37%）" },
+          { label: "类比", value: "就像相亲，如果你打算见10个人，前3个（37%）只看不选，从第4个开始，只要遇到比前3个都好的就立刻结婚" },
+          { label: "特点", value: "最大化选到最优项的概率（约37%）、平衡观察与决策" },
           { label: "应用场景", value: "招聘、租房、择偶（理论上）、买卖时机选择" }
         ],
         pseudocode: `def optimal_stopping(candidates):
@@ -1114,7 +1195,8 @@ def crew_scheduling(flights, rules):
           { label: "提出者", value: "Herbert Robbins" },
           { label: "年代", value: "1952年" },
           { label: "原理", value: "多个拉杆的老虎机，每个奖励概率未知，如何在有限次数内最大化收益" },
-          { label: "策略", value: "ε-贪婪（ε概率随机）、UCB（上置信界）、Thompson采样" },
+          { label: "类比", value: "就像去餐馆吃饭，是去那家你最喜欢的（利用），还是尝试一家新开的（探索）？" },
+          { label: "特点", value: "解决探索与利用博弈、最小化累积遗憾" },
           { label: "应用场景", value: "A/B测试、推荐系统、广告投放、临床试验" }
         ],
         pseudocode: `# UCB (Upper Confidence Bound) 策略
@@ -1150,7 +1232,8 @@ def UCB_algorithm(arms, total_steps):
           { label: "提出者", value: "John Forbes Nash Jr." },
           { label: "年代", value: "1950年" },
           { label: "原理", value: "寻找策略组合，使得任何单方改变策略都不会获得更高收益" },
-          { label: "算法", value: "Lemke-Howson（双矩阵博弈）、支持枚举法" },
+          { label: "类比", value: "就像两个人在窄路上相遇，如果大家都靠右走，谁也不想换到左边（因为会撞车），这就是一种稳定状态" },
+          { label: "特点", value: "非合作博弈的稳定性、策略的最优应对" },
           { label: "应用场景", value: "经济学寡头竞争、拍卖设计、交通网络流量分配、多智能体强化学习" }
         ],
         pseudocode: `# 虚拟博弈 (Fictitious Play) - 一种寻找纳什均衡的迭代算法
@@ -1179,7 +1262,9 @@ def fictitious_play(player1, player2, iterations):
         details: [
           { label: "提出者", value: "William Vickrey (维克里拍卖)" },
           { label: "年代", value: "1961年" },
-          { label: "类型", value: "英式（公开竞价）、荷兰式（降价）、密封拍卖、维克里拍卖（第二高价）" },
+          { label: "原理", value: "通过特定规则（如第二高价）引导竞标者报出真实估值，实现资源最优分配" },
+          { label: "类比", value: "就像在闲鱼拍卖，如果你真心想要某样东西，维克里规则能让你放心报出最高心理价，而不用担心被“杀猪”" },
+          { label: "特点", value: "激励相容（诚实是最好策略）、分配效率高" },
           { label: "应用场景", value: "5G频谱分配、在线广告实时竞价（RTB）、碳排放权交易、云计算资源定价" }
         ],
         pseudocode: `# 维克里拍卖 (Vickrey Auction / 第二价格密封拍卖)
@@ -1219,6 +1304,8 @@ def vickrey_auction(bidders, item):
           { label: "提出者", value: "James Cooley & John Tukey" },
           { label: "年代", value: "1965年" },
           { label: "原理", value: "将信号从时间域转换到频率域，高效计算DFT（O(n log n)）" },
+          { label: "类比", value: "就像把一杯混合果汁（时域信号）还原成配方：3个苹果、2个橙子（频域分量）" },
+          { label: "特点", value: "计算复杂度极低、分治法思想、现代信号处理基石" },
           { label: "应用场景", value: "音频压缩（MP3）、图像压缩（JPEG）、无线通信调制解调、雷达信号处理" }
         ],
         pseudocode: `# Cooley-Tukey FFT 算法 (递归实现)
@@ -1249,7 +1336,8 @@ def FFT(x):
           { label: "提出者", value: "Rudolf E. Kálmán" },
           { label: "年代", value: "1960年" },
           { label: "原理", value: "结合模型预测和传感器测量，根据各自的不确定性加权融合，递归更新" },
-          { label: "扩展", value: "扩展卡尔曼滤波（EKF处理非线性）、无迹卡尔曼滤波（UKF）" },
+          { label: "类比", value: "就像在黑夜里走路，你根据步长估计位置（预测），同时用手摸墙确认（测量），两者结合最靠谱" },
+          { label: "特点", value: "递归计算、最小均方误差最优、处理噪声能力强" },
           { label: "应用场景", value: "GPS导航、雷达跟踪、姿态估计、阿波罗登月计划" }
         ],
         pseudocode: `def kalman_filter(z_k, u_k):
@@ -1282,6 +1370,8 @@ def FFT(x):
           { label: "提出者", value: "Jean Morlet, Alex Grossmann, Yves Meyer 等" },
           { label: "年代", value: "1980s" },
           { label: "原理", value: "用不同尺度的小波函数分析信号，同时获得时域和频域局部信息" },
+          { label: "类比", value: "就像用不同倍数的显微镜观察，既能看到整体轮廓（低频），也能看到微小瑕疵（高频）" },
+          { label: "特点", value: "多分辨率分析、时频局部化、去噪效果好" },
           { label: "应用场景", value: "图像压缩（JPEG 2000）、去噪、特征提取、地震信号分析" }
         ],
         pseudocode: `# 离散小波变换 (DWT) 1D 伪代码
@@ -1306,6 +1396,8 @@ def DWT_1D(signal, low_pass_filter, high_pass_filter):
           { label: "提出者", value: "Robert W. Chang" },
           { label: "年代", value: "1966年 (专利) / 1990s (广泛应用)" },
           { label: "原理", value: "将高速数据流分成多个低速子流，在正交子载波上并行传输，抵抗多径衰落" },
+          { label: "类比", value: "就像把一大堆货分装在很多条小船上同时过河，就算沉了一两只，剩下的也能把货送到" },
+          { label: "特点", value: "频谱利用率高、抗多径干扰强、易于实现" },
           { label: "应用场景", value: "Wi-Fi (802.11a/g/n/ac/ax)、4G LTE、5G NR、数字电视广播" }
         ],
         pseudocode: `def OFDM_transmitter(data_bits):
@@ -1332,7 +1424,9 @@ def DWT_1D(signal, low_pass_filter, high_pass_filter):
         details: [
           { label: "提出者", value: "Arogyaswami Paulraj, Thomas Kailath 等" },
           { label: "年代", value: "1990s" },
-          { label: "方法", value: "迫零（ZF）、最小均方误差（MMSE）、最大似然（ML）、球形译码" },
+          { label: "原理", value: "利用空间分集和复用，在接收端分离多路天线发送的重叠信号" },
+          { label: "类比", value: "就像在嘈杂的晚宴上，你有两只耳朵（多天线），能从混合的声音中分辨出不同人的说话声" },
+          { label: "特点", value: "大幅提升信道容量、空间复用增益、计算复杂度高" },
           { label: "应用场景", value: "现代无线通信 (Wi-Fi 6, 5G)、雷达系统" }
         ],
         pseudocode: `# 迫零检测 (Zero-Forcing Detection) 伪代码
@@ -1529,7 +1623,8 @@ def AlphaFold2(amino_acid_sequence):
           { label: "提出者", value: "Fischer Black, Myron Scholes, Robert Merton" },
           { label: "年代", value: "1973年" },
           { label: "原理", value: "假设股价服从几何布朗运动，通过无套利原则推导偏微分方程" },
-          { label: "输入", value: "标的资产价格、执行价、无风险利率、到期时间、波动率" },
+          { label: "类比", value: "就像给一份“未来买房的权利”定金（期权）定价，要考虑现在的房价、未来的波动、利息和时间，算出一个公平价格" },
+          { label: "特点", value: "偏微分方程模型、无套利定价、希腊字母风险管理" },
           { label: "应用场景", value: "欧式期权定价、金融衍生品估值、企业员工期权评估" }
         ],
         pseudocode: `import math
@@ -1559,7 +1654,8 @@ def black_scholes_call(S, K, T, r, sigma):
           { label: "提出者", value: "Stanislaw Ulam, John von Neumann" },
           { label: "年代", value: "1940s (曼哈顿计划)" },
           { label: "原理", value: "大量随机采样模拟资产价格路径，计算衍生品价格或风险价值（VaR）" },
-          { label: "加速", value: "拟蒙特卡洛（低差异序列）、重要性采样" },
+          { label: "类比", value: "就像预测一场球赛的结果，如果你模拟一万次比赛，统计胜平负的比例，就能得出一个非常接近真实概率的预测" },
+          { label: "特点", value: "处理复杂非线性问题、计算精度随采样数增加、易于并行化" },
           { label: "应用场景", value: "复杂金融衍生品定价、投资组合风险评估(VaR)、项目成本估算" }
         ],
         pseudocode: `def monte_carlo_option_pricing(S0, K, T, r, sigma, num_simulations):
@@ -1591,8 +1687,9 @@ def black_scholes_call(S, K, T, r, sigma):
         details: [
           { label: "提出者", value: "华尔街量化基金 (如 Renaissance Technologies)" },
           { label: "年代", value: "1990s - 至今" },
-          { label: "策略", value: "做市（赚取买卖价差）、统计套利（协整关系）、事件驱动" },
-          { label: "技术", value: "FPGA硬件加速、共置服务器（Colocation）、微波通信" },
+          { label: "原理", value: "利用极速计算和低延迟网络，在微秒级时间内执行大量交易指令，赚取微小价差" },
+          { label: "类比", value: "就像在超市里，你比所有人都能更快看到价格变动，在涨价前的一秒买光所有打折货，再在另一家超市高价卖掉" },
+          { label: "特点", value: "极低延迟、高换手率、微小利润累积、硬件加速" },
           { label: "应用场景", value: "股票/期货市场流动性提供、跨市场套利、订单流毒性分析" }
         ],
         pseudocode: `# 简化的做市商策略 (Market Making)
@@ -1624,8 +1721,9 @@ def market_making_strategy(order_book, inventory, risk_limit):
         details: [
           { label: "提出者", value: "Bill Fair, Earl Isaac (FICO评分)" },
           { label: "年代", value: "1956年 (FICO成立) / 1989年 (通用FICO分数)" },
-          { label: "方法", value: "逻辑回归、随机森林、XGBoost、生存分析" },
-          { label: "指标", value: "KS统计量、AUC、基尼系数" },
+          { label: "原理", value: "利用逻辑回归或机器学习算法，根据历史信用数据预测借款人违约概率并转化为分数" },
+          { label: "类比", value: "就像老师给学生打分，根据平时的作业、考试和出勤（信用历史），预测期末是否会挂科（违约），分数越高越可靠" },
+          { label: "特点", value: "统计学建模、多维度特征评估、风险量化" },
           { label: "应用场景", value: "信用卡审批、房贷额度计算、P2P网贷风控、企业信用评级" }
         ],
         pseudocode: `# 信用评分卡模型 (基于逻辑回归的传统方法)
@@ -1663,8 +1761,9 @@ def build_scorecard(user_data):
         details: [
           { label: "提出者", value: "Steven M. LaValle" },
           { label: "年代", value: "1998年" },
-          { label: "原理", value: "从起点随机采样扩展树，直到接近目标，适合多自由度机械臂" },
-          { label: "改进", value: "RRT*（渐进最优）、Informed-RRT*（椭圆约束采样）" },
+          { label: "原理", value: "从起点开始随机采样并扩展树状结构，直到接近目标点，适合高维复杂空间" },
+          { label: "类比", value: "就像一棵在黑暗中四处乱长的树根，只要有一根须子碰到了水源（目标），路径就通了" },
+          { label: "特点", value: "概率完备性、适合非齐次约束、无需预处理空间" },
           { label: "应用场景", value: "机械臂抓取路径规划、无人车复杂环境避障、无人机三维空间飞行" }
         ],
         pseudocode: `def RRT(start, goal, environment):
@@ -1700,7 +1799,9 @@ def build_scorecard(user_data):
         details: [
           { label: "提出者", value: "Lydia E. Kavraki 等" },
           { label: "年代", value: "1996年" },
-          { label: "原理", value: "预处理阶段在自由空间随机采样构建图，查询时用图搜索找路径" },
+          { label: "原理", value: "预处理阶段在自由空间随机采样构建路线图，查询阶段利用图搜索算法寻找路径" },
+          { label: "类比", value: "就像在陌生的城市里先随机撒下一堆路标并连成网（预处理），以后想去哪儿直接查地图（查询）就行了" },
+          { label: "特点", value: "适合多查询任务、预处理开销大但查询快、适合静态环境" },
           { label: "应用场景", value: "静态工厂环境中的多机器人调度、游戏地图预处理寻路" }
         ],
         pseudocode: `# 1. 学习阶段 (预处理构建路线图)
@@ -1740,6 +1841,8 @@ def PRM_query(roadmap, start, goal, environment):
           { label: "提出者", value: "Dieter Fox 等" },
           { label: "年代", value: "1997年" },
           { label: "原理", value: "在速度空间(v,w)中采样，模拟运动轨迹，排除碰撞轨迹，选择最优评分轨迹" },
+          { label: "类比", value: "就像开车时，你根据当前的油门和方向盘角度，预判未来几秒会撞到哪儿，然后选一个既快又安全的开法" },
+          { label: "特点", value: "局部避障、考虑动力学约束、实时性强" },
           { label: "应用场景", value: "扫地机器人避障、仓储物流AGV动态避让行人" }
         ],
         pseudocode: `def DWA_local_planner(current_state, goal, obstacles):
@@ -1783,7 +1886,8 @@ def PRM_query(roadmap, start, goal, environment):
           { label: "提出者", value: "Oussama Khatib" },
           { label: "年代", value: "1986年" },
           { label: "原理", value: "目标产生引力，障碍物产生斥力，机器人沿合力方向运动" },
-          { label: "缺陷", value: "容易陷入局部极小值" },
+          { label: "类比", value: "就像一个小球滚向一个深坑（目标），但路上有很多凸起的石头（障碍物）把小球弹开，最后小球在引力和斥力的共同作用下到达坑底" },
+          { label: "特点", value: "计算简单、实时性极高、容易陷入局部极小值（死胡同）" },
           { label: "应用场景", value: "无人机编队飞行、简单环境下的快速反应避障" }
         ],
         pseudocode: `def artificial_potential_field(current_pos, goal_pos, obstacles):
@@ -1815,8 +1919,9 @@ def PRM_query(roadmap, start, goal, environment):
         details: [
           { label: "提出者", value: "Hugh Durrant-Whyte, John J. Leonard 等" },
           { label: "年代", value: "1986年 (概念提出) / 1990s (理论成熟)" },
-          { label: "方法", value: "滤波方法（EKF-SLAM）、图优化方法（G2O、GTSAM）" },
-          { label: "前端", value: "特征提取与匹配；后端：位姿图优化" },
+          { label: "原理", value: "机器人在未知环境中移动时，通过传感器数据同时构建地图并估计自身位置" },
+          { label: "类比", value: "就像你在一个完全漆黑的迷宫里，手里只有一把手电筒。你一边走一边画地图，同时根据画出的地图来判断自己现在走到了哪儿" },
+          { label: "特点", value: "解决“鸡生蛋蛋生鸡”问题、回环检测、多传感器融合" },
           { label: "应用场景", value: "自动驾驶高精地图构建、AR/VR空间定位、火星车探测" }
         ],
         pseudocode: `# 基于图优化 (Graph-based) 的 SLAM 框架
@@ -1862,8 +1967,9 @@ def graph_slam(sensor_data, odometry_data):
         details: [
           { label: "提出者", value: "Larry Page & Sergey Brin (Google创始人)" },
           { label: "年代", value: "1998年" },
-          { label: "原理", value: "将链接视为投票，重要页面的投票权重更高，迭代计算特征向量" },
-          { label: "扩展", value: "个性化PageRank、TextRank（用于关键词提取）" },
+          { label: "原理", value: "将链接视为投票，重要页面的投票权重更高，通过迭代计算网页的特征向量来排序" },
+          { label: "类比", value: "就像学术论文引用，被越多牛人引用的论文越牛，被越多重要网页链接的网页也越重要" },
+          { label: "特点", value: "链接分析、随机游走模型、抗作弊能力强" },
           { label: "应用场景", value: "搜索引擎结果排序、社交网络影响力分析、文献引用分析" }
         ],
         pseudocode: `def calculate_pagerank(graph, d=0.85, max_iterations=100, tol=1e-6):
@@ -1904,7 +2010,9 @@ def graph_slam(sensor_data, odometry_data):
         details: [
           { label: "提出者", value: "Rakesh Agrawal 等 (Apriori) / Jiawei Han 等 (FP-Growth)" },
           { label: "年代", value: "1994年 (Apriori) / 2000年 (FP-Growth)" },
-          { label: "原理", value: "找出频繁项集（如\"买尿布的顾客也买啤酒\"），支持度-置信度-提升度筛选" },
+          { label: "原理", value: "挖掘数据集中项与项之间的关联规则，通过支持度和置信度筛选频繁项集" },
+          { label: "类比", value: "就像超市发现买尿布的人通常也会买啤酒，于是把它们摆在一起卖，这就是关联规则挖掘" },
+          { label: "特点", value: "频繁项集挖掘、剪枝策略（Apriori）、树结构加速（FP-Growth）" },
           { label: "应用场景", value: "超市商品摆放优化、电商推荐系统(买了又买)、医疗并发症分析" }
         ],
         pseudocode: `# Apriori 算法伪代码
@@ -1938,8 +2046,9 @@ def apriori(transactions, min_support):
         details: [
           { label: "提出者", value: "Martin Ester 等 (DBSCAN) / Mihael Ankerst 等 (OPTICS)" },
           { label: "年代", value: "1996年 (DBSCAN) / 1999年 (OPTICS)" },
-          { label: "原理", value: "基于密度连接性，能发现任意形状簇，自动识别噪声点" },
-          { label: "对比", value: "K-means假设球形簇，DBSCAN不需要预设簇数" },
+          { label: "原理", value: "基于密度的聚类方法，通过寻找高密度区域来识别簇，并能自动识别噪声点" },
+          { label: "类比", value: "就像在地图上找城市，房子密集的区域就是城市（簇），荒郊野外零星的房子就是噪声" },
+          { label: "特点", value: "发现任意形状簇、无需预设簇数、对噪声鲁棒" },
           { label: "应用场景", value: "异常检测、地理空间数据聚类、图像分割、雷达点云处理" }
         ],
         pseudocode: `# DBSCAN 算法伪代码
@@ -1994,7 +2103,9 @@ def expand_cluster(data, labels, point_idx, neighbors, cluster_id, eps, min_pts)
         details: [
           { label: "提出者", value: "Laurens van der Maaten & Geoffrey Hinton (t-SNE) / Leland McInnes 等 (UMAP)" },
           { label: "年代", value: "2008年 (t-SNE) / 2018年 (UMAP)" },
-          { label: "原理", value: "保持高维空间中局部邻域结构，映射到2D/3D，用于观察数据分布" },
+          { label: "原理", value: "将高维数据映射到低维空间（2D/3D），同时尽可能保持高维空间中的局部邻域结构" },
+          { label: "类比", value: "就像把一个复杂的地球仪压扁成一张平面地图，虽然形状变了，但原本挨在一起的国家在地图上还是挨在一起" },
+          { label: "特点", value: "非线性降维、保持局部结构、可视化效果极佳" },
           { label: "应用场景", value: "单细胞RNA测序数据分析、深度学习特征可视化、自然语言词向量降维" }
         ],
         pseudocode: `# t-SNE 核心思想伪代码
@@ -2027,7 +2138,9 @@ def t_SNE(X, no_dims=2, perplexity=30.0, learning_rate=200.0, max_iter=1000):
         details: [
           { label: "提出者", value: "Carl Sechen & Alberto Sangiovanni-Vincentelli (TimberWolf)" },
           { label: "年代", value: "1985年" },
-          { label: "原理", value: "模拟标准单元在芯片上的位置，最小化线长、时序、功耗" },
+          { label: "原理", value: "利用模拟退火算法优化芯片上标准单元的布局，以最小化总线长、时序延迟和功耗" },
+          { label: "类比", value: "就像在有限的房间里摆放家具，先随机乱放（高温），然后慢慢微调（降温），直到找到一个走路最顺手、空间利用率最高的位置" },
+          { label: "特点", value: "启发式搜索、跳出局部最优、处理大规模约束" },
           { label: "应用场景", value: "集成电路(IC)物理设计、FPGA布局布线、印刷电路板(PCB)设计" }
         ],
         pseudocode: `def simulated_annealing_placement(cells, netlist, T_initial, T_final, alpha):
@@ -2062,7 +2175,9 @@ def t_SNE(X, no_dims=2, perplexity=30.0, learning_rate=200.0, max_iter=1000):
         details: [
           { label: "提出者", value: "John von Neumann 等 (早期数值方法) / Suhas Patankar (SIMPLE算法)" },
           { label: "年代", value: "1950s (早期) / 1972年 (SIMPLE)" },
-          { label: "方法", value: "有限体积法（FVM）、有限元法（FEM）、格子玻尔兹曼（LBM）" },
+          { label: "原理", value: "通过数值方法求解描述流体运动的纳维-斯托克斯方程，模拟流体流动现象" },
+          { label: "类比", value: "就像把空气或水切成无数个微小的立方体（网格），计算每个立方体受到的压力和推力，从而预测整股气流或水流的走向" },
+          { label: "特点", value: "离散化求解、非线性耦合、计算量巨大" },
           { label: "应用场景", value: "飞机气动外形设计、F1赛车风洞模拟、建筑风环境评估、天气预报" }
         ],
         pseudocode: `# SIMPLE 算法 (Semi-Implicit Method for Pressure Linked Equations) 伪代码
@@ -2100,7 +2215,9 @@ def SIMPLE_algorithm(mesh, initial_conditions, boundary_conditions):
         details: [
           { label: "提出者", value: "Richard Courant, Ray Clough 等" },
           { label: "年代", value: "1940s - 1950s" },
-          { label: "原理", value: "将连续体离散为有限个单元，求解刚度矩阵方程，计算应力应变分布" },
+          { label: "原理", value: "将连续的结构体离散为有限个单元，通过求解大型刚度矩阵方程来计算结构的应力、应变和位移" },
+          { label: "类比", value: "就像把一个复杂的零件（如大桥或汽车）看作是由无数个微小的弹簧连接而成的网格，通过计算每个小弹簧的拉伸程度来判断整个零件哪里最容易断" },
+          { label: "特点", value: "几何适应性强、物理场耦合、工业仿真标准" },
           { label: "应用场景", value: "汽车碰撞测试仿真、桥梁承重分析、航空发动机叶片应力分析" }
         ],
         pseudocode: `def finite_element_analysis(geometry, material_properties, loads, boundary_conditions):
@@ -2146,7 +2263,9 @@ def SIMPLE_algorithm(mesh, initial_conditions, boundary_conditions):
         details: [
           { label: "提出者", value: "Google (Brendan McMahan 等)" },
           { label: "年代", value: "2016年" },
-          { label: "原理", value: "各设备本地训练模型，只上传梯度/参数到服务器聚合，保护数据隐私" },
+          { label: "原理", value: "在保护数据隐私的前提下，让多个设备在本地训练模型，仅上传模型参数或梯度进行全局聚合" },
+          { label: "类比", value: "就像一群医生想联合编写一本医学指南，但不能交换病人的病历。于是每个医生根据自己的病人总结经验（本地训练），最后大家聚在一起只交流经验（参数聚合），而不看病历" },
+          { label: "特点", value: "数据不动模型动、隐私保护、分布式计算" },
           { label: "应用场景", value: "手机输入法预测词训练、多家医院联合训练疾病诊断模型、银行间联合反欺诈" }
         ],
         pseudocode: `# FedAvg (Federated Averaging) 算法伪代码
@@ -2182,7 +2301,9 @@ def federated_learning_server(num_rounds, clients):
         details: [
           { label: "提出者", value: "Barret Zoph & Quoc V. Le (Google Brain)" },
           { label: "年代", value: "2016年" },
-          { label: "原理", value: "用强化学习或进化算法自动设计神经网络结构，搜索最优拓扑" },
+          { label: "原理", value: "利用强化学习、进化算法或梯度下降等方法，自动在搜索空间中寻找最优的神经网络拓扑结构" },
+          { label: "类比", value: "就像给AI一个乐高仓库，让它自己去尝试拼出最稳固、最轻便的桥梁，而不需要人类工程师手动去设计每一根梁柱的位置" },
+          { label: "特点", value: "自动化设计、搜索空间大、计算成本高（早期）" },
           { label: "应用场景", value: "移动端轻量化模型设计(MobileNetV3)、特定硬件架构的模型定制" }
         ],
         pseudocode: `# 基于强化学习的 NAS 伪代码
@@ -2216,8 +2337,9 @@ def neural_architecture_search(search_space, max_episodes):
         details: [
           { label: "提出者", value: "Peter Shor / Lov Grover" },
           { label: "年代", value: "1994年 (Shor) / 1996年 (Grover)" },
-          { label: "Shor", value: "大数质因数分解，威胁RSA加密" },
-          { label: "Grover", value: "无序数据库搜索，平方级加速" },
+          { label: "原理", value: "利用量子的叠加和纠缠特性，实现对大数分解（Shor）或无序搜索（Grover）的指数级或平方级加速" },
+          { label: "类比", value: "就像在迷宫里找出口，传统算法是一个人慢慢试错，而量子算法是瞬间分身成无数个影子，同时走遍所有路，瞬间找到出口" },
+          { label: "特点", value: "量子并行性、超越经典计算极限、对现有加密体系构成威胁" },
           { label: "应用场景", value: "后量子密码学研究、新材料模拟、复杂组合优化问题" }
         ],
         pseudocode: `# Grover 搜索算法核心逻辑 (寻找无序数据库中满足条件的元素)
@@ -2250,7 +2372,9 @@ def grover_search(database_size_N, target_function):
         details: [
           { label: "提出者", value: "Judea Pearl" },
           { label: "年代", value: "1995年" },
-          { label: "原理", value: "Pearl的因果图模型，通过干预（do-算子）和反事实推理识别因果关系" },
+          { label: "原理", value: "利用因果图模型和干预算子（do-operator）从观测数据中识别因果关系，区分相关性与因果性" },
+          { label: "类比", value: "就像判断“公鸡打鸣”和“太阳升起”的关系。虽然它们高度相关，但如果你捂住公鸡的嘴（干预），太阳照样升起，说明公鸡打鸣不是太阳升起的原因" },
+          { label: "特点", value: "区分相关与因果、反事实推理、处理混杂因子" },
           { label: "应用场景", value: "医学药效评估、政策效果分析、推荐系统去偏、A/B测试替代" }
         ],
         pseudocode: `# 后门准则 (Back-door Criterion) 伪代码
@@ -2285,7 +2409,9 @@ def calculate_causal_effect(data, causal_graph, treatment_X, outcome_Y):
         details: [
           { label: "提出者", value: "Emmanuel Candès, Justin Romberg, Terence Tao, David Donoho" },
           { label: "年代", value: "2004年 - 2006年" },
-          { label: "原理", value: "如果信号稀疏，可用远少于奈奎斯特定理要求的样本重建信号，通过L1范数最小化" },
+          { label: "原理", value: "如果信号是稀疏的，可以利用远少于奈奎斯特定理要求的样本量来精确重建信号" },
+          { label: "类比", value: "就像画一幅素描，你不需要画出纸上的每一个像素，只需要勾勒出关键的线条（稀疏特征），大脑就能自动补全整幅画" },
+          { label: "特点", value: "突破采样极限、利用信号稀疏性、L1范数优化" },
           { label: "应用场景", value: "单像素相机、快速核磁共振成像(MRI)、深空通信、无线传感器网络" }
         ],
         pseudocode: `# 压缩感知重建 (基于 L1 范数最小化)
@@ -2325,7 +2451,8 @@ def compressed_sensing_reconstruction(y, Phi, Psi):
           { label: "提出者", value: "Tony Hoare" },
           { label: "年代", value: "1959年" },
           { label: "原理", value: "选择一个基准值，将数组分为小于和大于基准的两部分，递归排序" },
-          { label: "特点", value: "平均时间复杂度 O(n log n)，空间复杂度低，实际应用中最常用的排序算法之一" },
+          { label: "类比", value: "就像排队买票，先找一个中间人，比他矮的站左边，比他高的站右边，然后左右两边的人再各自找中间人继续排，直到全排好" },
+          { label: "特点", value: "分而治之思想、平均复杂度O(n log n)、原地排序" },
           { label: "应用场景", value: "标准库排序函数(如 C++ std::sort, Java Arrays.sort)、数据库索引构建" }
         ],
         pseudocode: `def quick_sort(arr, low, high):
@@ -2363,6 +2490,8 @@ def partition(arr, low, high):
           { label: "提出者", value: "John Mauchly (首次提及) / Derrick Henry Lehmer (首个工作程序)" },
           { label: "年代", value: "1946年 / 1960年" },
           { label: "原理", value: "在有序数组中，每次比较中间元素，将搜索范围缩小一半" },
+          { label: "类比", value: "就像在字典里查单词，先翻到中间，看单词在前半本还是后半本，然后继续翻那一半的中间，直到找到为止" },
+          { label: "特点", value: "对数级时间复杂度、要求数据有序、实现简单高效" },
           { label: "应用场景", value: "数据库索引查找、Git Bisect 定位引入 Bug 的提交、字典查词" }
         ],
         pseudocode: `def binary_search(arr, target):
@@ -2393,8 +2522,9 @@ def partition(arr, low, high):
         details: [
           { label: "提出者", value: "Richard Bellman" },
           { label: "年代", value: "1953年" },
-          { label: "原理", value: "将复杂问题分解为重叠子问题，保存子问题的解避免重复计算（Memoization）" },
-          { label: "经典问题", value: "背包问题、最长公共子序列 (LCS)、斐波那契数列" },
+          { label: "原理", value: "将复杂问题分解为重叠子问题，通过保存子问题的解（备忘录）来避免重复计算" },
+          { label: "类比", value: "就像计算 1+1+1+1+1，你数完是5。如果我再加个1，你不需要从头数，直接在5的基础上加1得到6，因为你记住了之前的计算结果" },
+          { label: "特点", value: "空间换时间、处理重叠子问题、最优子结构" },
           { label: "应用场景", value: "序列比对、资源分配优化、最短路径计算(Floyd-Warshall)" }
         ],
         pseudocode: `# 0-1 背包问题 (0-1 Knapsack Problem) 伪代码
@@ -2422,8 +2552,9 @@ def knapsack_01(weights, values, capacity):
         details: [
           { label: "提出者", value: "Edward F. Moore (BFS) / Charles Pierre Trémaux (DFS前身)" },
           { label: "年代", value: "1959年 (BFS) / 19世纪 (DFS)" },
-          { label: "BFS", value: "广度优先搜索，像水波纹一样逐层向外扩展，常用于寻找最短路径" },
-          { label: "DFS", value: "深度优先搜索，一条路走到黑再回溯，常用于拓扑排序、迷宫求解" },
+          { label: "原理", value: "BFS逐层扩展搜索，DFS沿路径深入搜索并回溯" },
+          { label: "类比", value: "BFS就像往池塘里扔石头激起的涟漪，一层层向外扩散；DFS就像走迷宫，撞到南墙才回头，换条路继续钻" },
+          { label: "特点", value: "BFS找最短路径（无权图）、DFS适合深度优先探索、基础图算法" },
           { label: "应用场景", value: "社交网络好友推荐(BFS)、网页爬虫、依赖关系解析(DFS)" }
         ],
         pseudocode: `# 广度优先搜索 (BFS)
@@ -2464,7 +2595,9 @@ def DFS(graph, current_node, visited):
         details: [
           { label: "提出者", value: "Leslie Lamport (Paxos) / Diego Ongaro & John Ousterhout (Raft)" },
           { label: "年代", value: "1989年 (Paxos) / 2014年 (Raft)" },
-          { label: "原理", value: "在不可靠的网络中，让多个节点对某个值或日志序列达成一致" },
+          { label: "原理", value: "在不可靠的网络中，让多个节点对某个值或日志序列达成一致，实现分布式系统的强一致性" },
+          { label: "类比", value: "就像一个小班级选班长，必须有一套规则确保大家最后投出的票是一致的，而且就算有人请假（节点故障），选举也能正常进行" },
+          { label: "特点", value: "强一致性、高可用性、容错能力强、Raft更易理解和实现" },
           { label: "应用场景", value: "ZooKeeper (ZAB), etcd (Raft), 分布式数据库的选主与数据同步" }
         ],
         pseudocode: `# Raft 领导者选举 (Leader Election) 简化逻辑
@@ -2501,7 +2634,9 @@ def raft_election_timer_timeout(node):
         details: [
           { label: "提出者", value: "Jeffrey Dean & Sanjay Ghemawat (Google)" },
           { label: "年代", value: "2004年" },
-          { label: "原理", value: "将任务拆分(Map)到多台机器并行处理，然后将结果汇总(Reduce)" },
+          { label: "原理", value: "将大规模计算任务拆分为多个并行的Map任务，处理完后再通过Reduce任务汇总结果" },
+          { label: "类比", value: "就像人口普查，每个普查员负责一个街道（Map），最后把各街道的数据汇总到统计局（Reduce）得出总人口" },
+          { label: "特点", value: "海量数据处理、容错性高、屏蔽底层分布式细节" },
           { label: "应用场景", value: "Hadoop、大规模日志分析、搜索引擎倒排索引构建、分布式单词计数" }
         ],
         pseudocode: `# MapReduce 经典案例：单词计数 (Word Count)
@@ -2534,7 +2669,9 @@ def reduce_function(word, counts_list):
         details: [
           { label: "提出者", value: "David Karger 等" },
           { label: "年代", value: "1997年" },
-          { label: "原理", value: "将数据和服务器节点映射到一个哈希环上，节点增删时只需迁移极少部分数据" },
+          { label: "原理", value: "将数据和服务器节点映射到一个哈希环上，节点增删时只需迁移极少部分数据，实现平滑扩容" },
+          { label: "类比", value: "就像大家围成一个圈坐，每个人负责自己顺时针方向到下一个人之间的区域。如果有人走了，他的区域就归下一个人管，而不需要所有人重新分地" },
+          { label: "特点", value: "负载均衡、平滑扩容、减少缓存失效" },
           { label: "应用场景", value: "Redis 集群、Memcached、CDN 节点路由、分布式存储系统" }
         ],
         pseudocode: `class ConsistentHashRing:
@@ -2582,7 +2719,9 @@ def reduce_function(word, counts_list):
         details: [
           { label: "提出者", value: "Ron Rivest, Adi Shamir, Leonard Adleman" },
           { label: "年代", value: "1977年" },
-          { label: "原理", value: "基于大整数分解的数学难题，公钥加密私钥解密，或私钥签名公钥验证" },
+          { label: "原理", value: "基于大整数分解的数学难题，利用公钥加密私钥解密，或私钥签名公钥验证" },
+          { label: "类比", value: "就像一个带两把钥匙的保险箱：一把是公钥（大家都能拿去锁门），一把是私钥（只有主人能开门）。你把信锁进去，只有主人能看" },
+          { label: "特点", value: "非对称加密、安全性高、计算开销大（相比对称加密）" },
           { label: "应用场景", value: "HTTPS/TLS 证书交换、SSH 登录、数字签名、PGP邮件加密" }
         ],
         pseudocode: `# RSA 密钥生成与加解密原理
@@ -2623,7 +2762,9 @@ def rsa_decrypt(ciphertext, private_key):
         details: [
           { label: "提出者", value: "Joan Daemen, Vincent Rijmen (Rijndael算法)" },
           { label: "年代", value: "1998年 (提出) / 2001年 (成为标准)" },
-          { label: "原理", value: "使用相同的密钥进行多轮字节代换、行移位、列混淆等操作加密数据" },
+          { label: "原理", value: "使用相同的密钥进行多轮字节代换、行移位、列混淆等操作加密数据，属于对称加密算法" },
+          { label: "类比", value: "就像一个复杂的魔方，你和朋友共用一个口诀（密钥）。你按照口诀把魔方拧乱（加密），朋友拿到后按照同样的口诀反向拧回来（解密）" },
+          { label: "特点", value: "对称加密、速度极快、安全性高、硬件支持广泛" },
           { label: "应用场景", value: "磁盘加密(BitLocker)、Wi-Fi (WPA2/3)、大文件加密传输、VPN" }
         ],
         pseudocode: `# AES 加密轮函数 (以 128 位密钥，10 轮为例)
@@ -2654,7 +2795,9 @@ def aes_encrypt_block(plaintext_16bytes, key):
         details: [
           { label: "提出者", value: "美国国家安全局 (NSA)" },
           { label: "年代", value: "1993年(SHA-0) / 2001年(SHA-2) / 2015年(SHA-3)" },
-          { label: "原理", value: "将任意长度的数据映射为固定长度的散列值，具有不可逆和抗碰撞性" },
+          { label: "原理", value: "将任意长度的数据映射为固定长度的散列值，具有不可逆性、抗碰撞性和雪崩效应" },
+          { label: "类比", value: "就像人的指纹。虽然指纹很短，但能唯一代表一个人。只要人变了一点点（数据变了一个字节），指纹就会完全不同" },
+          { label: "特点", value: "单向不可逆、固定长度输出、抗碰撞性" },
           { label: "应用场景", value: "密码存储(加盐)、区块链工作量证明(PoW)、文件完整性校验、数字签名" }
         ],
         pseudocode: `# SHA-256 核心处理逻辑 (简化)
@@ -2710,6 +2853,8 @@ def sha256(message):
           { label: "提出者", value: "Rudolf Bayer & Edward M. McCreight" },
           { label: "年代", value: "1970年 (B树) / 1972年 (B+树)" },
           { label: "原理", value: "多路平衡查找树，非叶子节点只存索引，所有数据存在叶子节点且用链表相连，适合磁盘顺序读取" },
+          { label: "类比", value: "就像图书馆的索引卡片目录。你先查大类（非叶子节点），再查小类，最后在书架上找到一排排的书（叶子节点），而且书与书之间是挨着的" },
+          { label: "特点", value: "扇出高（树矮）、范围查询快、磁盘IO友好" },
           { label: "应用场景", value: "关系型数据库索引 (MySQL InnoDB)、文件系统 (NTFS, XFS)" }
         ],
         pseudocode: `def bplus_tree_search(node, key):
@@ -2738,6 +2883,8 @@ def sha256(message):
           { label: "提出者", value: "Patrick O'Neil 等" },
           { label: "年代", value: "1996年" },
           { label: "原理", value: "将随机写转化为顺序写，先写入内存(MemTable)，满了后刷入磁盘(SSTable)，后台定期合并(Compaction)" },
+          { label: "类比", value: "就像记账。你先随手记在小本子上（内存），记满一页就撕下来贴在大账本里（磁盘）。虽然查的时候要翻好几页，但记账速度极快" },
+          { label: "特点", value: "写性能极高、顺序IO、读放大/空间放大问题" },
           { label: "应用场景", value: "NoSQL数据库 (Cassandra, RocksDB, HBase)、时序数据库、写密集型场景" }
         ],
         pseudocode: `def lsm_tree_write(key, value):
@@ -2778,6 +2925,8 @@ def lsm_tree_read(key):
           { label: "提出者", value: "Burton Howard Bloom" },
           { label: "年代", value: "1970年" },
           { label: "原理", value: "多个哈希函数映射到一个位数组，能100%判断元素不存在，但判断存在有一定误判率" },
+          { label: "类比", value: "就像一个简易的名单过滤器。如果名字没在上面，那肯定没来；如果名字在上面，可能真的来了，也可能是重名了（误判）" },
+          { label: "特点", value: "空间利用率极高、查询极快、不支持删除" },
           { label: "应用场景", value: "数据库防缓存穿透、LSM树快速判断SSTable是否包含某Key、网页黑名单过滤" }
         ],
         pseudocode: `class BloomFilter:
@@ -2810,6 +2959,8 @@ def lsm_tree_read(key):
           { label: "提出者", value: "David P. Reed" },
           { label: "年代", value: "1978年" },
           { label: "原理", value: "每次写操作创建数据的新版本，读操作读取特定版本，实现读写不互斥，提高并发性能" },
+          { label: "类比", value: "就像在云文档里协作。你改你的版本，我读我的旧版本，互不干扰。只有当你提交后，我刷新才能看到你的新版本" },
+          { label: "特点", value: "读写不冲突、无锁读、事务隔离" },
           { label: "应用场景", value: "关系型数据库事务隔离 (MySQL InnoDB, PostgreSQL)、避免脏读和不可重复读" }
         ],
         pseudocode: `def mvcc_read(transaction_id, row_id):
@@ -2848,6 +2999,8 @@ def mvcc_write(transaction_id, row_id, new_data):
           { label: "提出者", value: "C. Mohan 等 (IBM)" },
           { label: "年代", value: "1992年" },
           { label: "原理", value: "基于 Write-Ahead Logging (WAL)，崩溃恢复分三阶段：分析(Analysis)、重做(Redo)、撤销(Undo)" },
+          { label: "类比", value: "就像飞机上的黑匣子。飞机出事后，先看黑匣子记录了什么（分析），然后复现当时的飞行轨迹（重做），最后撤销那些没完成的错误操作（撤销）" },
+          { label: "特点", value: "保证ACID特性、支持部分回滚、恢复速度快" },
           { label: "应用场景", value: "数据库崩溃恢复 (Crash Recovery)、保证事务的原子性(A)和持久性(D)" }
         ],
         pseudocode: `def aries_recovery(log_file, checkpoint):
@@ -2874,6 +3027,336 @@ def mvcc_write(transaction_id, row_id, new_data):
       undo_update_to_page(log_record)
       # 写入补偿日志记录 (CLR)，防止再次崩溃时重复撤销
       write_clr(log_record)`
+      }
+    ]
+  },
+  {
+    id: "power-of-algorithms",
+    title: "十八、算法的力量",
+    algorithms: [
+      {
+        name: "P vs NP 问题",
+        subtitle: "计算机科学的终极悬赏",
+        details: [
+          { label: "提出者", value: "Stephen Cook & Leonid Levin" },
+          { label: "年代", value: "1971年" },
+          { label: "原理", value: "探讨“容易验证的问题”是否也“容易求解”，是克雷数学研究所的七大千禧年难题之首" },
+          { label: "类比", value: "就像“看懂一个精彩的魔术”很容易（验证），但“自己发明并表演这个魔术”却极难（求解）。P=NP 意味着只要你能看懂，你就能发明" },
+          { label: "意义", value: "如果 P=NP，现有的所有加密体系将瞬间崩溃，世界将变得完全不同" },
+          { label: "应用场景", value: "密码学安全性证明、组合优化极限研究、计算复杂性理论" }
+        ],
+        pseudocode: `# 这是一个无法用代码实现的逻辑，因为它是一个未解之谜
+# 如果你能写出下面这个函数的 O(poly(n)) 实现，你将获得 100 万美元奖励
+def solve_np_complete_in_polynomial_time(problem_instance):
+  # 目前已知最好的算法都是指数级的
+  # return exponential_search(problem_instance)
+  pass`
+      },
+      {
+        name: "停机问题 (Halting Problem)",
+        subtitle: "算法的极限",
+        details: [
+          { label: "提出者", value: "Alan Turing" },
+          { label: "年代", value: "1936年" },
+          { label: "原理", value: "证明不存在一个通用算法，能判断任意程序在任意输入下是否会停止运行" },
+          { label: "类比", value: "就像不存在一个“全能裁判”，能预知任何一场比赛是否永远打不完。有些程序注定会陷入死循环，而我们无法用算法提前百分之百确定" },
+          { label: "特点", value: "不可计算性、逻辑自洽性证明、图灵机的基石" },
+          { label: "应用场景", value: "编译器优化限制、程序形式化验证、逻辑学基础" }
+        ],
+        pseudocode: `# 证明停机问题不可解的经典反证法逻辑
+def H(program, input):
+  # 假设存在这样一个全能函数 H，能判断程序是否停机
+  if program_halts(program, input):
+    return True
+  else:
+    return False
+
+def evil_program(x):
+  if H(x, x):
+    while True: # 如果 H 说我会停机，我就进入死循环
+      pass
+  else:
+    return # 如果 H 说我会死循环，我就立刻停机
+    
+# 悖论：evil_program(evil_program) 会停机吗？
+# 无论 H 怎么回答，都会产生矛盾。`
+      },
+      {
+        name: "通用近似定理 (Universal Approximation Theorem)",
+        subtitle: "神经网络为何全能",
+        details: [
+          { label: "提出者", value: "George Cybenko / Kurt Hornik" },
+          { label: "年代", value: "1989年 / 1991年" },
+          { label: "原理", value: "证明只要神经网络有足够的隐藏层神经元，它可以以任意精度逼近任何连续函数" },
+          { label: "类比", value: "就像乐高积木，只要你有足够多的小方块（神经元），你就可以拼出世界上任何形状的物体（函数）" },
+          { label: "特点", value: "深度学习的理论基石、非线性映射能力、表达能力极限" },
+          { label: "应用场景", value: "深度神经网络架构设计、复杂物理系统模拟、万能函数拟合" }
+        ],
+        pseudocode: `# 神经网络的前向传播 (逼近任意函数的核心)
+def neural_network_forward(x, weights, biases):
+  # 1. 第一层线性变换
+  z1 = matmul(weights[0], x) + biases[0]
+  # 2. 激活函数 (非线性是关键)
+  a1 = sigmoid(z1)
+  
+  # 3. 第二层线性变换
+  z2 = matmul(weights[1], a1) + biases[1]
+  # 4. 输出层
+  output = z2
+  
+  # 只要中间层 a1 的维度足够大，output 就能逼近任何函数 f(x)
+  return output`
+      }
+    ]
+  },
+  {
+    id: "latest-developments",
+    title: "十九、算法的最新发展",
+    algorithms: [
+      {
+        name: "大语言模型 (LLM) 与 Scaling Laws",
+        subtitle: "规模即智能",
+        details: [
+          { label: "提出者", value: "OpenAI (Jared Kaplan 等)" },
+          { label: "年代", value: "2020年" },
+          { label: "原理", value: "发现模型性能与参数量、数据量、计算量之间存在幂律关系，推动了千亿参数模型的爆发" },
+          { label: "类比", value: "就像大脑的进化，当神经元数量（参数）和阅读的书籍（数据）达到一定量级后，智能会产生质的飞跃（涌现）" },
+          { label: "特点", value: "涌现能力 (Emergent Abilities)、上下文学习、多任务通用性" },
+          { label: "应用场景", value: "ChatGPT, Claude, 智能助手、代码自动生成、多模态理解" }
+        ],
+        pseudocode: `# Transformer 核心：自注意力机制 (Self-Attention)
+def self_attention(Q, K, V):
+  # 1. 计算注意力分数 (相关性矩阵)
+  # 每一个词都在看其他词，确定关注点
+  scores = matmul(Q, K.transpose()) / sqrt(d_k)
+  
+  # 2. 归一化 (Softmax)
+  weights = softmax(scores)
+  
+  # 3. 加权汇总 (得到新的语义表示)
+  output = matmul(weights, V)
+  
+  return output`
+      },
+      {
+        name: "扩散模型 (Diffusion Models)",
+        subtitle: "创意生成的数学引擎",
+        details: [
+          { label: "提出者", value: "Jascha Sohl-Dickstein / Jonathan Ho" },
+          { label: "年代", value: "2015年 (提出) / 2020年 (爆发)" },
+          { label: "原理", value: "模拟将图像逐渐变成噪声的过程（正向），然后训练模型从纯噪声中一步步还原出图像（反向）" },
+          { label: "类比", value: "就像把一滴墨水滴入清水里散开（加噪），然后要求模型学会“时光倒流”，把散开的墨水重新聚集成原来的图案" },
+          { label: "特点", value: "生成质量极高、训练稳定、可控性强" },
+          { label: "应用场景", value: "AI 绘画 (Midjourney, Stable Diffusion)、视频生成 (Sora)、新药分子设计" }
+        ],
+        pseudocode: `# 扩散模型反向去噪过程 (生成图像)
+def diffusion_sampling(noise_image, model, steps):
+  current_image = noise_image
+  
+  for t in reversed(range(steps)):
+    # 1. 预测当前图像中的噪声成分
+    predicted_noise = model.predict(current_image, t)
+    
+    # 2. 减去预测的噪声，还原出更清晰的一步
+    # 就像在迷雾中一点点擦亮玻璃
+    current_image = remove_noise(current_image, predicted_noise, t)
+    
+  return current_image # 最终得到清晰的生成图像`
+      },
+      {
+        name: "科学人工智能 (AI for Science)",
+        subtitle: "算法成为新的显微镜",
+        details: [
+          { label: "提出者", value: "跨学科研究团队 (DeepMind, Microsoft Research 等)" },
+          { label: "年代", value: "2020s" },
+          { label: "原理", value: "将深度学习与物理定律、化学方程结合，加速科学发现过程" },
+          { label: "类比", value: "以前科学家是靠实验室里一次次做实验（试错），现在是让 AI 在虚拟实验室里进行亿万次模拟，直接告诉科学家最有希望的方案" },
+          { label: "特点", value: "物理信息神经网络 (PINNs)、跨尺度建模、超越人类直觉" },
+          { label: "应用场景", value: "新材料预测 (GNoME)、天气预报 (GraphCast)、核聚变控制、蛋白质设计" }
+        ],
+        pseudocode: `# 物理信息神经网络 (PINN) 损失函数
+def pinn_loss(model, data_points, physics_equation):
+  # 1. 数据驱动损失 (拟合已知实验数据)
+  mse_data = calculate_mse(model.predict(data_points), true_values)
+  
+  # 2. 物理约束损失 (必须满足物理方程，如能量守恒)
+  # 利用自动微分计算导数
+  physics_residual = physics_equation(model, data_points)
+  mse_physics = calculate_mse(physics_residual, 0)
+  
+  # 总损失 = 数据准确 + 物理正确
+  return mse_data + lambda * mse_physics`
+      }
+    ]
+  },
+  {
+    id: "networking-protocols",
+    title: "二十、计算机网络与协议算法",
+    algorithms: [
+      {
+        name: "滑动窗口 (Sliding Window)",
+        subtitle: "流量控制的艺术",
+        details: [
+          { label: "提出者", value: "Vinton Cerf & Robert Kahn (TCP设计者)" },
+          { label: "年代", value: "1974年" },
+          { label: "原理", value: "发送方维持一个连续的允许发送的数据帧序列，无需等待每个包的确认即可连续发送，直到窗口填满" },
+          { label: "类比", value: "就像一个传送带，你可以连续放上好几个箱子（数据包），只要传送带没满，你就不需要等第一个箱子到达目的地再放第二个" },
+          { label: "特点", value: "流量控制、提高信道利用率、支持全双工通信" },
+          { label: "应用场景", value: "TCP 协议流量控制、数据链路层 ARQ 协议" }
+        ],
+        pseudocode: `# 简化的滑动窗口发送逻辑
+def sliding_window_sender(data_stream, window_size):
+  base = 0
+  next_seq_num = 0
+  
+  while base < len(data_stream):
+    # 1. 发送窗口内的所有可用数据
+    while next_seq_num < base + window_size and next_seq_num < len(data_stream):
+      send_packet(data_stream[next_seq_num])
+      start_timer(next_seq_num)
+      next_seq_num += 1
+      
+    # 2. 等待确认 (ACK) 或超时
+    event = wait_for_event()
+    
+    if event.type == ACK_RECEIVED:
+      # 收到确认，窗口向前滑动
+      # 累积确认：收到 ACK(n) 表示 n 之前的所有包都已收到
+      if event.ack_num >= base:
+        base = event.ack_num + 1
+        
+    elif event.type == TIMEOUT:
+      # 超时重传：从 base 开始重新发送窗口内的所有包
+      next_seq_num = base`
+      },
+      {
+        name: "TCP 拥塞控制 (Reno/BBR)",
+        subtitle: "互联网交通警察",
+        details: [
+          { label: "提出者", value: "Van Jacobson (Reno) / Google (BBR)" },
+          { label: "年代", value: "1988年 (Reno) / 2016年 (BBR)" },
+          { label: "原理", value: "动态调整发送速率以匹配网络带宽。Reno 基于丢包反馈，BBR 基于带宽和延迟乘积" },
+          { label: "类比", value: "就像在高速公路上开车：Reno 是看到前面撞车了（丢包）才猛踩刹车；BBR 是根据路面的宽窄和车流速度（带宽时延）来平稳调节油门" },
+          { label: "特点", value: "公平性、稳定性、最大化带宽利用、减少排队延迟" },
+          { label: "应用场景", value: "互联网数据传输、视频流媒体、大规模文件分发" }
+        ],
+        pseudocode: `# TCP Reno 拥塞控制状态机
+def tcp_reno_congestion_control():
+  cwnd = 1 # 拥塞窗口初始大小
+  ssthresh = 64 # 慢启动阈值
+  state = SLOW_START
+  
+  while True:
+    if state == SLOW_START:
+      # 慢启动：每收到一个 ACK，窗口翻倍 (指数增长)
+      cwnd *= 2
+      if cwnd >= ssthresh:
+        state = CONGESTION_AVOIDANCE
+        
+    elif state == CONGESTION_AVOIDANCE:
+      # 拥塞避免：每个轮次窗口增加 1 (线性增长)
+      cwnd += 1
+      
+    # 遇到丢包事件 (探测到拥塞)
+    if detect_packet_loss():
+      # 乘性减：阈值设为当前窗口一半，窗口重置
+      ssthresh = cwnd / 2
+      cwnd = 1
+      state = SLOW_START`
+      },
+      {
+        name: "Dijkstra / Bellman-Ford",
+        subtitle: "寻找网络最短路径",
+        details: [
+          { label: "提出者", value: "Edsger Dijkstra / Bellman & Ford" },
+          { label: "年代", value: "1956年 / 1958年" },
+          { label: "原理", value: "计算网络拓扑中节点间的最短路径，用于构建路由表" },
+          { label: "类比", value: "就像 GPS 导航，它会检查所有可能的路口和路段，为你计算出一条耗时最短或路费最省的路线" },
+          { label: "特点", value: "全局最优（Dijkstra）、支持负权边（Bellman-Ford）、分布式计算" },
+          { label: "应用场景", value: "OSPF 协议 (Dijkstra)、RIP 协议 (Bellman-Ford)、BGP 路径选择" }
+        ],
+        pseudocode: `# Dijkstra 算法 (链路状态路由核心)
+def dijkstra(graph, start_node):
+  distances = {node: infinity for node in graph}
+  distances[start_node] = 0
+  priority_queue = [(0, start_node)]
+  
+  while priority_queue:
+    current_dist, u = pop_min(priority_queue)
+    
+    if current_dist > distances[u]:
+      continue
+      
+    for v, weight in graph.neighbors(u):
+      distance = current_dist + weight
+      # 找到更短的路径
+      if distance < distances[v]:
+        distances[v] = distance
+        push(priority_queue, (distance, v))
+        
+  return distances`
+      },
+      {
+        name: "令牌桶算法 (Token Bucket)",
+        subtitle: "流量整形与限流",
+        details: [
+          { label: "提出者", value: "网络工程社区" },
+          { label: "年代", value: "1980s" },
+          { label: "原理", value: "以固定速率向桶中放入令牌，发送数据包必须消耗令牌，允许一定程度的突发流量" },
+          { label: "类比", value: "就像电影院检票：票（令牌）按固定速度打印并放进盒子里。如果盒子里有存票，一群人可以瞬间进去（突发）；如果没票了，大家只能按打印速度排队进" },
+          { label: "特点", value: "允许突发流量、平滑输出速率、简单高效" },
+          { label: "应用场景", value: "QoS 流量整形、API 接口限流、云服务带宽控制" }
+        ],
+        pseudocode: `class TokenBucket:
+  def __init__(self, rate, capacity):
+    self.rate = rate # 每秒产生的令牌数
+    self.capacity = capacity # 桶的最大容量
+    self.tokens = capacity
+    self.last_refill_time = now()
+    
+  def consume(self, tokens_needed):
+    # 1. 根据时间流逝补充令牌
+    current_time = now()
+    delta_time = current_time - self.last_refill_time
+    new_tokens = delta_time * self.rate
+    
+    self.tokens = min(self.capacity, self.tokens + new_tokens)
+    self.last_refill_time = current_time
+    
+    # 2. 尝试消耗令牌
+    if self.tokens >= tokens_needed:
+      self.tokens -= tokens_needed
+      return True # 允许通过
+    else:
+      return False # 被限流`
+      },
+      {
+        name: "Kademlia (DHT)",
+        subtitle: "去中心化网络的指南针",
+        details: [
+          { label: "提出者", value: "Petar Maymounkov & David Mazières" },
+          { label: "年代", value: "2002年" },
+          { label: "原理", value: "基于 XOR 距离度量的分布式哈希表，通过递归查询在 log(n) 步内定位资源" },
+          { label: "类比", value: "就像一个没有总部的去中心化通讯录：每个人只认识几个邻居，但如果你想找某人，邻居会告诉你谁离那个人更近，直到你找到为止" },
+          { label: "特点", value: "完全去中心化、高容错性、节点动态加入/退出" },
+          { label: "应用场景", value: "BitTorrent (DHT)、以太坊 (Node Discovery)、IPFS、电驴 (eMule)" }
+        ],
+        pseudocode: `# Kademlia 节点查找逻辑
+def find_node(target_id, k_closest_nodes):
+  # 1. 计算 XOR 距离: distance = node_id ^ target_id
+  # 2. 从已知的 k 个最近节点中发起并行查询
+  while not converged:
+    for node in k_closest_nodes:
+      # 向节点询问：“你认识的离 target_id 最近的 k 个节点是谁？”
+      new_nodes = node.rpc_find_node(target_id)
+      
+      # 3. 更新最近节点列表
+      k_closest_nodes = update_closest(k_closest_nodes, new_nodes, target_id)
+      
+    if no_closer_nodes_found():
+      break
+      
+  return k_closest_nodes`
       }
     ]
   }
